@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       background: transparent;
@@ -16,12 +15,7 @@
       padding: 12px;
       -webkit-font-smoothing: antialiased;
     }
-
-    .widget-wrapper {
-      width: 100%;
-      max-width: 580px;
-    }
-
+    .widget-wrapper { width: 100%; max-width: 580px; }
     .widget-card {
       background: #ffffff;
       border-radius: 20px;
@@ -29,322 +23,105 @@
       box-shadow: 0 4px 24px rgba(27,58,47,0.06);
       overflow: hidden;
     }
-
-    /* Header */
-    .widget-header {
-      text-align: center;
-      padding: 28px 24px 8px;
-    }
-
+    .widget-header { text-align: center; padding: 28px 24px 8px; }
     .widget-header h2 {
       font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 22px;
-      color: #1B3A2F;
-      margin-bottom: 6px;
-      line-height: 1.3;
+      font-weight: 700; font-size: 22px; color: #1B3A2F;
+      margin-bottom: 6px; line-height: 1.3;
     }
-
-    .widget-header p {
-      font-size: 13px;
-      color: #7A8B82;
-      font-weight: 500;
-      line-height: 1.4;
-    }
-
-    /* Progress bar */
-    .progress-bar {
-      display: flex;
-      gap: 6px;
-      padding: 16px 24px 0;
-    }
-
+    .widget-header p { font-size: 13px; color: #7A8B82; font-weight: 500; line-height: 1.4; }
+    .progress-bar { display: flex; gap: 6px; padding: 16px 24px 0; }
     .progress-step {
-      flex: 1;
-      height: 4px;
-      border-radius: 2px;
-      background: #E8E3DA;
-      transition: background 0.4s ease;
+      flex: 1; height: 4px; border-radius: 2px;
+      background: #E8E3DA; transition: background 0.4s ease;
     }
-
-    .progress-step.active {
-      background: #1B3A2F;
-    }
-
-    .progress-step.complete {
-      background: #2A5C47;
-    }
-
-    /* Question area */
-    .question-area {
-      padding: 20px 24px 24px;
-      min-height: 320px;
-      position: relative;
-    }
-
+    .progress-step.active { background: #1B3A2F; }
+    .progress-step.complete { background: #2A5C47; }
+    .question-area { padding: 20px 24px 24px; min-height: 320px; position: relative; }
     .question-slide {
-      display: none;
-      opacity: 0;
-      transform: translateX(20px);
+      display: none; opacity: 0; transform: translateX(20px);
       transition: opacity 0.35s ease, transform 0.35s ease;
     }
-
-    .question-slide.active {
-      display: block;
-    }
-
-    .question-slide.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
+    .question-slide.active { display: block; }
+    .question-slide.visible { opacity: 1; transform: translateX(0); }
     .question-label {
-      font-size: 11px;
-      font-weight: 600;
-      color: #A0ADA6;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      margin-bottom: 8px;
+      font-size: 11px; font-weight: 600; color: #A0ADA6;
+      text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 8px;
     }
-
     .question-text {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 19px;
-      color: #1B3A2F;
-      margin-bottom: 20px;
-      line-height: 1.35;
+      font-family: 'Playfair Display', serif; font-weight: 700;
+      font-size: 19px; color: #1B3A2F; margin-bottom: 20px; line-height: 1.35;
     }
-
-    /* Option buttons */
-    .options-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
+    .options-grid { display: flex; flex-direction: column; gap: 10px; }
     .option-btn {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      width: 100%;
-      padding: 14px 18px;
-      background: #F8F6F2;
-      border: 2px solid transparent;
-      border-radius: 14px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      text-align: left;
+      display: flex; align-items: center; gap: 14px; width: 100%;
+      padding: 14px 18px; background: #F8F6F2; border: 2px solid transparent;
+      border-radius: 14px; cursor: pointer; transition: all 0.25s ease; text-align: left;
+      font-family: 'DM Sans', sans-serif; font-size: 15px;
     }
-
-    .option-btn:hover {
-      border-color: rgba(27,58,47,0.15);
-      background: #f3f0ea;
-      transform: translateY(-1px);
-    }
-
-    .option-btn:active {
-      transform: translateY(0);
-    }
-
-    .option-btn.selected {
-      border-color: #1B3A2F;
-      background: rgba(27,58,47,0.06);
-    }
-
+    .option-btn:hover { border-color: rgba(27,58,47,0.15); background: #f3f0ea; transform: translateY(-1px); }
+    .option-btn:active { transform: translateY(0); }
+    .option-btn.selected { border-color: #1B3A2F; background: rgba(27,58,47,0.06); }
     .option-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
-      background: #ffffff;
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0; background: #ffffff;
     }
-
-    .option-label {
-      font-weight: 600;
-      font-size: 15px;
-      color: #1B3A2F;
-      line-height: 1.3;
-    }
-
-    .option-desc {
-      font-size: 12.5px;
-      color: #7A8B82;
-      font-weight: 400;
-      margin-top: 2px;
-      line-height: 1.3;
-    }
-
-    /* Result card */
+    .option-label { font-weight: 600; font-size: 15px; color: #1B3A2F; line-height: 1.3; }
+    .option-desc { font-size: 12.5px; color: #7A8B82; font-weight: 400; margin-top: 2px; line-height: 1.3; }
     .result-slide {
-      display: none;
-      opacity: 0;
-      transform: translateY(16px);
+      display: none; opacity: 0; transform: translateY(16px);
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
-
-    .result-slide.active {
-      display: block;
-    }
-
-    .result-slide.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
+    .result-slide.active { display: block; }
+    .result-slide.visible { opacity: 1; transform: translateY(0); }
     .result-match-label {
-      font-size: 11px;
-      font-weight: 600;
-      color: #2A5C47;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      margin-bottom: 12px;
-      text-align: center;
+      font-size: 11px; font-weight: 600; color: #2A5C47;
+      text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 12px; text-align: center;
     }
-
     .result-product-card {
-      background: #F8F6F2;
-      border-radius: 16px;
-      padding: 24px;
-      text-align: center;
-      margin-bottom: 16px;
+      background: #F8F6F2; border-radius: 16px; padding: 24px;
+      text-align: center; margin-bottom: 16px;
     }
-
-    .result-emoji {
-      font-size: 42px;
-      margin-bottom: 12px;
-      display: block;
-    }
-
+    .result-emoji { font-size: 42px; margin-bottom: 12px; display: block; }
     .result-product-name {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 21px;
-      color: #1B3A2F;
-      margin-bottom: 6px;
+      font-family: 'Playfair Display', serif; font-weight: 700;
+      font-size: 21px; color: #1B3A2F; margin-bottom: 6px;
     }
-
-    .result-product-type {
-      font-size: 13px;
-      color: #7A8B82;
-      font-weight: 500;
-      margin-bottom: 14px;
-    }
-
+    .result-product-type { font-size: 13px; color: #7A8B82; font-weight: 500; margin-bottom: 14px; }
     .result-flavor-desc {
-      font-size: 14.5px;
-      color: #4A5D53;
-      line-height: 1.55;
-      margin-bottom: 18px;
-      max-width: 420px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 14.5px; color: #4A5D53; line-height: 1.55; margin-bottom: 18px;
+      max-width: 420px; margin-left: auto; margin-right: auto;
     }
-
-    /* Stat pills */
-    .result-stats {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
+    .result-stats { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
     .stat-pill {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #1B3A2F;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
+      background: #ffffff; border-radius: 20px; padding: 6px 14px;
+      font-size: 12.5px; font-weight: 600; color: #1B3A2F;
+      display: inline-flex; align-items: center; gap: 5px;
     }
-
-    .stat-pill .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #2A5C47;
-      display: inline-block;
-    }
-
-    /* CTA button */
+    .stat-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: #2A5C47; display: inline-block; }
     .result-cta {
-      display: block;
-      width: 100%;
-      padding: 14px 20px;
-      background: #1B3A2F;
-      color: #ffffff;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      text-decoration: none;
-      text-align: center;
-      transition: background 0.25s ease, transform 0.15s ease;
-      margin-bottom: 10px;
+      display: block; width: 100%; padding: 14px 20px; background: #1B3A2F;
+      color: #ffffff; font-family: 'DM Sans', sans-serif; font-size: 15px;
+      font-weight: 600; border: none; border-radius: 12px; cursor: pointer;
+      text-decoration: none; text-align: center;
+      transition: background 0.25s ease, transform 0.15s ease; margin-bottom: 10px;
     }
-
-    .result-cta:hover {
-      background: #2A5C47;
-      transform: translateY(-1px);
-    }
-
-    .result-cta:active {
-      transform: translateY(0);
-    }
-
-    /* Secondary suggestion */
+    .result-cta:hover { background: #2A5C47; transform: translateY(-1px); }
+    .result-cta:active { transform: translateY(0); }
     .result-secondary {
-      text-align: center;
-      padding: 12px 16px;
-      background: rgba(27,58,47,0.03);
-      border-radius: 12px;
-      margin-top: 4px;
+      text-align: center; padding: 12px 16px;
+      background: rgba(27,58,47,0.03); border-radius: 12px; margin-top: 4px;
     }
-
-    .result-secondary p {
-      font-size: 13px;
-      color: #7A8B82;
-      line-height: 1.5;
-    }
-
-    .result-secondary a {
-      color: #1B3A2F;
-      font-weight: 600;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    /* Restart */
+    .result-secondary p { font-size: 13px; color: #7A8B82; line-height: 1.5; }
+    .result-secondary a { color: #1B3A2F; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
     .restart-btn {
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 12px;
-      background: none;
-      border: none;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      color: #A0ADA6;
-      cursor: pointer;
+      display: block; width: 100%; text-align: center; padding: 12px;
+      background: none; border: none; font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 600; color: #A0ADA6; cursor: pointer;
       transition: color 0.2s ease;
     }
-
-    .restart-btn:hover {
-      color: #1B3A2F;
-    }
-
-    /* Mobile */
+    .restart-btn:hover { color: #1B3A2F; }
     @media (max-width: 420px) {
       .widget-header { padding: 22px 18px 6px; }
       .widget-header h2 { font-size: 19px; }
@@ -370,109 +147,73 @@
         <h2>Find Your Flavor</h2>
         <p>Three quick questions to your perfect Mood drink</p>
       </div>
-
       <div class="progress-bar">
         <div class="progress-step" id="step-1"></div>
         <div class="progress-step" id="step-2"></div>
         <div class="progress-step" id="step-3"></div>
       </div>
-
       <div class="question-area">
-
-        <!-- Question 1: Flavor -->
+        <!-- Question 1 -->
         <div class="question-slide" id="q1">
           <div class="question-label">Question 1 of 3</div>
           <div class="question-text">What flavor do you usually reach for?</div>
           <div class="options-grid">
-            <button class="option-btn" data-question="1" data-value="citrus" onclick="selectAnswer(1, 'citrus')">
+            <button class="option-btn" data-question="1" data-value="citrus" onclick="selectAnswer(this, 1, 'citrus')">
               <div class="option-icon">🍋</div>
-              <div>
-                <div class="option-label">Citrus &amp; Bright</div>
-                <div class="option-desc">Lime, lemon, tangy fruits</div>
-              </div>
+              <div><div class="option-label">Citrus &amp; Bright</div><div class="option-desc">Lime, lemon, tangy fruits</div></div>
             </button>
-            <button class="option-btn" data-question="1" data-value="tropical" onclick="selectAnswer(1, 'tropical')">
+            <button class="option-btn" data-question="1" data-value="tropical" onclick="selectAnswer(this, 1, 'tropical')">
               <div class="option-icon">🥭</div>
-              <div>
-                <div class="option-label">Tropical &amp; Fruity</div>
-                <div class="option-desc">Peach, mango, berry blends</div>
-              </div>
+              <div><div class="option-label">Tropical &amp; Fruity</div><div class="option-desc">Peach, mango, berry blends</div></div>
             </button>
-            <button class="option-btn" data-question="1" data-value="classic" onclick="selectAnswer(1, 'classic')">
+            <button class="option-btn" data-question="1" data-value="classic" onclick="selectAnswer(this, 1, 'classic')">
               <div class="option-icon">🥤</div>
-              <div>
-                <div class="option-label">Classic &amp; Sweet</div>
-                <div class="option-desc">Cola, root beer, nostalgic flavors</div>
-              </div>
+              <div><div class="option-label">Classic &amp; Sweet</div><div class="option-desc">Cola, root beer, nostalgic flavors</div></div>
             </button>
-            <button class="option-btn" data-question="1" data-value="warm" onclick="selectAnswer(1, 'warm')">
+            <button class="option-btn" data-question="1" data-value="warm" onclick="selectAnswer(this, 1, 'warm')">
               <div class="option-icon">☕</div>
-              <div>
-                <div class="option-label">Warm &amp; Cozy</div>
-                <div class="option-desc">Chocolate, cocoa, rich comfort</div>
-              </div>
+              <div><div class="option-label">Warm &amp; Cozy</div><div class="option-desc">Chocolate, cocoa, rich comfort</div></div>
             </button>
           </div>
         </div>
-
-        <!-- Question 2: Carbonation -->
+        <!-- Question 2 -->
         <div class="question-slide" id="q2">
           <div class="question-label">Question 2 of 3</div>
           <div class="question-text">How do you feel about carbonation?</div>
           <div class="options-grid">
-            <button class="option-btn" data-question="2" data-value="full" onclick="selectAnswer(2, 'full')">
+            <button class="option-btn" data-question="2" data-value="full" onclick="selectAnswer(this, 2, 'full')">
               <div class="option-icon">🫧</div>
-              <div>
-                <div class="option-label">Love the fizz</div>
-                <div class="option-desc">Bubbly and effervescent all the way</div>
-              </div>
+              <div><div class="option-label">Love the fizz</div><div class="option-desc">Bubbly and effervescent all the way</div></div>
             </button>
-            <button class="option-btn" data-question="2" data-value="light" onclick="selectAnswer(2, 'light')">
+            <button class="option-btn" data-question="2" data-value="light" onclick="selectAnswer(this, 2, 'light')">
               <div class="option-icon">💧</div>
-              <div>
-                <div class="option-label">Light bubbles</div>
-                <div class="option-desc">Gentle sparkle, nothing too intense</div>
-              </div>
+              <div><div class="option-label">Light bubbles</div><div class="option-desc">Gentle sparkle, nothing too intense</div></div>
             </button>
-            <button class="option-btn" data-question="2" data-value="none" onclick="selectAnswer(2, 'none')">
+            <button class="option-btn" data-question="2" data-value="none" onclick="selectAnswer(this, 2, 'none')">
               <div class="option-icon">🍵</div>
-              <div>
-                <div class="option-label">No bubbles</div>
-                <div class="option-desc">Smooth and still, no carbonation</div>
-              </div>
+              <div><div class="option-label">No bubbles</div><div class="option-desc">Smooth and still, no carbonation</div></div>
             </button>
           </div>
         </div>
-
-        <!-- Question 3: Occasion -->
+        <!-- Question 3 -->
         <div class="question-slide" id="q3">
           <div class="question-label">Question 3 of 3</div>
           <div class="question-text">What is the occasion?</div>
           <div class="options-grid">
-            <button class="option-btn" data-question="3" data-value="social" onclick="selectAnswer(3, 'social')">
+            <button class="option-btn" data-question="3" data-value="social" onclick="selectAnswer(this, 3, 'social')">
               <div class="option-icon">🎉</div>
-              <div>
-                <div class="option-label">Social hangout</div>
-                <div class="option-desc">Friends, cookout, or a party</div>
-              </div>
+              <div><div class="option-label">Social hangout</div><div class="option-desc">Friends, cookout, or a party</div></div>
             </button>
-            <button class="option-btn" data-question="3" data-value="chill" onclick="selectAnswer(3, 'chill')">
+            <button class="option-btn" data-question="3" data-value="chill" onclick="selectAnswer(this, 3, 'chill')">
               <div class="option-icon">🌙</div>
-              <div>
-                <div class="option-label">Quiet evening</div>
-                <div class="option-desc">Unwinding at home, movie night</div>
-              </div>
+              <div><div class="option-label">Quiet evening</div><div class="option-desc">Unwinding at home, movie night</div></div>
             </button>
-            <button class="option-btn" data-question="3" data-value="explore" onclick="selectAnswer(3, 'explore')">
+            <button class="option-btn" data-question="3" data-value="explore" onclick="selectAnswer(this, 3, 'explore')">
               <div class="option-icon">✨</div>
-              <div>
-                <div class="option-label">Trying something new</div>
-                <div class="option-desc">Curious and open to anything</div>
-              </div>
+              <div><div class="option-label">Trying something new</div><div class="option-desc">Curious and open to anything</div></div>
             </button>
           </div>
         </div>
-
         <!-- Result -->
         <div class="result-slide" id="result">
           <div class="result-match-label">Your Perfect Match</div>
@@ -487,195 +228,123 @@
           <div class="result-secondary" id="result-secondary"></div>
           <button class="restart-btn" onclick="restart()">↻ Start Over</button>
         </div>
-
       </div>
     </div>
   </div>
 
   <script>
-    /* ========================================
-       THC Drink Flavor Finder Quiz — Mood
-       ======================================== */
-
     var answers = {};
-    var currentQ = 0;
-
-    /* Product catalog */
     var products = {
       'cherry-lime': {
-        name: 'Cherry Lime Soda',
-        type: 'THC Soda · 4-Pack',
-        emoji: '🍒',
+        name: 'Cherry Lime Soda', type: 'THC Soda · 4-Pack', emoji: '🍒',
         desc: 'Tart citrus meets stone fruit sweetness with a touch of cane sugar. Bold, refreshing, and perfect over ice.',
         stats: ['1:1 THC:CBD', '5mg or 10mg', 'Low-cal', '4.45 ★'],
-        url: 'https://mood.com/product/cherry-lime-soda',
-        price: 'From $19'
+        url: 'https://mood.com/product/cherry-lime-soda', price: 'From $19'
       },
       'peach-mango': {
-        name: 'Peach Mango Seltzer',
-        type: 'THC Seltzer · 4-Pack',
-        emoji: '🍑',
+        name: 'Peach Mango Seltzer', type: 'THC Seltzer · 4-Pack', emoji: '🍑',
         desc: 'Sweet peach and tropical mango in a crisp, clean seltzer. Sugar-free, calorie-free, and effortlessly refreshing.',
         stats: ['1:1 THC:CBD', '5mg or 10mg', 'Zero cal', '4.26 ★'],
-        url: 'https://mood.com/product/peach-mango-seltzer',
-        price: 'From $19'
+        url: 'https://mood.com/product/peach-mango-seltzer', price: 'From $19'
       },
       'strawberry-lemonade': {
-        name: 'Strawberry Lemonade Seltzer',
-        type: 'THC Seltzer · 4-Pack',
-        emoji: '🍓',
+        name: 'Strawberry Lemonade Seltzer', type: 'THC Seltzer · 4-Pack', emoji: '🍓',
         desc: 'Bright strawberry and tangy lemon in a light, bubbly seltzer. The kind of drink that tastes like a warm afternoon.',
         stats: ['1:1 THC:CBD', '5mg or 10mg', 'Zero cal', '4.37 ★'],
-        url: 'https://mood.com/product/strawberry-lemonade-seltzer',
-        price: 'From $19'
+        url: 'https://mood.com/product/strawberry-lemonade-seltzer', price: 'From $19'
       },
       'classic-cola': {
-        name: 'Classic Cola',
-        type: 'THC Soda · 4-Pack',
-        emoji: '🥤',
+        name: 'Classic Cola', type: 'THC Soda · 4-Pack', emoji: '🥤',
         desc: 'The familiar, nostalgic cola flavor done right. Natural ingredients, cane sugar, and a smooth finish that keeps you coming back.',
         stats: ['1:1 THC:CBD', '5mg or 10mg', 'Low-cal', '4.31 ★'],
-        url: 'https://mood.com/product/classic-cola',
-        price: 'From $19'
+        url: 'https://mood.com/product/classic-cola', price: 'From $19'
       },
       'brown-sugar-cola': {
-        name: 'Brown Sugar Cola',
-        type: 'THC Soda · 4-Pack',
-        emoji: '🍯',
+        name: 'Brown Sugar Cola', type: 'THC Soda · 4-Pack', emoji: '🍯',
         desc: 'A richer, warmer take on cola with caramel and molasses depth. Bolder than Classic Cola for evenings when you want more flavor.',
         stats: ['1:1 THC:CBD', '5mg or 10mg', 'Low-cal'],
-        url: 'https://mood.com/product/brown-sugar-cola',
-        price: 'From $19'
+        url: 'https://mood.com/product/brown-sugar-cola', price: 'From $19'
       },
       'hot-cocoa': {
-        name: 'Sleep Hot Cocoa',
-        type: 'THC Hot Drink',
-        emoji: '☕',
+        name: 'Sleep Hot Cocoa', type: 'THC Hot Drink', emoji: '☕',
         desc: 'Rich, comforting chocolate in a warm cup. The highest-rated Mood beverage at 4.83 stars, built for cozy evenings and winding down.',
         stats: ['1:1 THC:CBD', 'Top Rated', '4.83 ★'],
-        url: 'https://mood.com/product/sleepytime-hot-cocoa',
-        price: 'From $49'
+        url: 'https://mood.com/product/sleepytime-hot-cocoa', price: 'From $49'
       },
       'variety-pack': {
-        name: 'Variety Pack',
-        type: '2 Sodas + 2 Seltzers',
-        emoji: '🎁',
+        name: 'Variety Pack', type: '2 Sodas + 2 Seltzers', emoji: '🎁',
         desc: 'All four Mood flavors in one box. Cherry Lime, Classic Cola, Peach Mango, and Strawberry Lemonade. The easiest way to find your favorite.',
         stats: ['1:1 THC:CBD', '5mg or 10mg', '4 Flavors', '4.27 ★'],
-        url: 'https://mood.com/product/variety-pack-2-sodas-2-seltzers',
-        price: 'From $19'
+        url: 'https://mood.com/product/variety-pack-2-sodas-2-seltzers', price: 'From $19'
       },
       'nano-shot': {
-        name: 'Nano Delta-9 THC Shot',
-        type: 'Fast-Acting THC Shot',
-        emoji: '⚡',
+        name: 'Nano Delta-9 THC Shot', type: 'Fast-Acting THC Shot', emoji: '⚡',
         desc: 'Concentrated and fast-acting. Not a sipper, but a quick way to feel the effects. Mix it into your own mocktail creation at home.',
         stats: ['Fast onset', 'Concentrated', 'Mixable'],
-        url: 'https://mood.com/product/nano-delta-9-thc-shot',
-        price: ''
+        url: 'https://mood.com/product/nano-delta-9-thc-shot', price: ''
       }
     };
 
-    /* Recommendation logic */
     function getRecommendation(flavor, carb, occasion) {
       var primary, secondary;
-
       if (flavor === 'warm') {
         primary = 'hot-cocoa';
         secondary = occasion === 'explore' ? 'variety-pack' : 'brown-sugar-cola';
       } else if (flavor === 'citrus') {
-        if (carb === 'full') {
-          primary = 'cherry-lime';
-          secondary = occasion === 'social' ? 'variety-pack' : 'strawberry-lemonade';
-        } else if (carb === 'light') {
-          primary = 'strawberry-lemonade';
-          secondary = occasion === 'explore' ? 'variety-pack' : 'cherry-lime';
-        } else {
-          primary = 'nano-shot';
-          secondary = 'cherry-lime';
-        }
+        if (carb === 'full') { primary = 'cherry-lime'; secondary = occasion === 'social' ? 'variety-pack' : 'strawberry-lemonade'; }
+        else if (carb === 'light') { primary = 'strawberry-lemonade'; secondary = occasion === 'explore' ? 'variety-pack' : 'cherry-lime'; }
+        else { primary = 'nano-shot'; secondary = 'cherry-lime'; }
       } else if (flavor === 'tropical') {
-        if (carb === 'none') {
-          primary = 'nano-shot';
-          secondary = 'peach-mango';
-        } else {
-          primary = 'peach-mango';
-          secondary = occasion === 'social' ? 'variety-pack' : 'strawberry-lemonade';
-        }
+        if (carb === 'none') { primary = 'nano-shot'; secondary = 'peach-mango'; }
+        else { primary = 'peach-mango'; secondary = occasion === 'social' ? 'variety-pack' : 'strawberry-lemonade'; }
       } else if (flavor === 'classic') {
-        if (carb === 'full') {
-          primary = 'classic-cola';
-          secondary = occasion === 'chill' ? 'brown-sugar-cola' : 'variety-pack';
-        } else if (carb === 'light') {
-          primary = 'brown-sugar-cola';
-          secondary = occasion === 'explore' ? 'variety-pack' : 'classic-cola';
-        } else {
-          primary = 'hot-cocoa';
-          secondary = 'classic-cola';
-        }
+        if (carb === 'full') { primary = 'classic-cola'; secondary = occasion === 'chill' ? 'brown-sugar-cola' : 'variety-pack'; }
+        else if (carb === 'light') { primary = 'brown-sugar-cola'; secondary = occasion === 'explore' ? 'variety-pack' : 'classic-cola'; }
+        else { primary = 'hot-cocoa'; secondary = 'classic-cola'; }
       }
-
-      /* Override: "explore" + any non-warm → consider Variety Pack as primary */
       if (occasion === 'explore' && flavor !== 'warm' && carb !== 'none') {
         secondary = primary;
         primary = 'variety-pack';
       }
-
       return { primary: primary, secondary: secondary };
     }
 
-    /* UI Logic */
-    function selectAnswer(q, value) {
+    /* FIX: btn element passed directly instead of relying on event */
+    function selectAnswer(btn, q, value) {
       answers[q] = value;
-
-      /* Highlight selected button */
       var btns = document.querySelectorAll('[data-question="' + q + '"]');
-      btns.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-      event.currentTarget.classList.add('selected');
-
-      /* Advance after brief delay */
+      for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('selected'); }
+      btn.classList.add('selected');
       setTimeout(function() {
-        if (q < 3) {
-          showQuestion(q + 1);
-        } else {
-          showResult();
-        }
+        if (q < 3) { showQuestion(q + 1); }
+        else { showResult(); }
       }, 300);
     }
 
     function showQuestion(num) {
-      currentQ = num;
-
       /* Update progress */
       for (var i = 1; i <= 3; i++) {
         var step = document.getElementById('step-' + i);
-        step.classList.remove('active', 'complete');
-        if (i < num) step.classList.add('complete');
-        if (i === num) step.classList.add('active');
+        step.className = 'progress-step';
+        if (i < num) step.className = 'progress-step complete';
+        if (i === num) step.className = 'progress-step active';
       }
-
-      /* Hide all question slides */
+      /* Hide all slides */
       var slides = document.querySelectorAll('.question-slide');
-      slides.forEach(function(s) {
-        s.classList.remove('visible');
-        setTimeout(function() { s.classList.remove('active'); }, 350);
-      });
-
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove('visible');
+        slides[i].classList.remove('active');
+      }
       /* Hide result */
       var result = document.getElementById('result');
-      result.classList.remove('active', 'visible');
-
-      /* Show target question */
+      result.classList.remove('active');
+      result.classList.remove('visible');
+      /* Show target */
       var target = document.getElementById('q' + num);
-      setTimeout(function() {
-        target.classList.add('active');
-        /* Force reflow */
-        target.offsetHeight;
-        target.classList.add('visible');
-      }, 100);
-
+      target.classList.add('active');
+      /* Force reflow then animate in */
+      void target.offsetHeight;
+      target.classList.add('visible');
       notifyParentHeight();
     }
 
@@ -683,74 +352,51 @@
       var rec = getRecommendation(answers[1], answers[2], answers[3]);
       var product = products[rec.primary];
       var alt = products[rec.secondary];
-
-      /* Update progress to all complete */
+      /* Progress all complete */
       for (var i = 1; i <= 3; i++) {
-        document.getElementById('step-' + i).classList.remove('active');
-        document.getElementById('step-' + i).classList.add('complete');
+        document.getElementById('step-' + i).className = 'progress-step complete';
       }
-
       /* Hide questions */
       var slides = document.querySelectorAll('.question-slide');
-      slides.forEach(function(s) {
-        s.classList.remove('visible');
-        setTimeout(function() { s.classList.remove('active'); }, 350);
-      });
-
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove('visible');
+        slides[i].classList.remove('active');
+      }
       /* Populate result */
       document.getElementById('result-emoji').textContent = product.emoji;
       document.getElementById('result-name').textContent = product.name;
       document.getElementById('result-type').textContent = product.type;
       document.getElementById('result-desc').textContent = product.desc;
-
       var statsHtml = '';
-      product.stats.forEach(function(s) {
-        statsHtml += '<span class="stat-pill"><span class="dot"></span>' + s + '</span>';
-      });
+      for (var i = 0; i < product.stats.length; i++) {
+        statsHtml += '<span class="stat-pill"><span class="dot"></span>' + product.stats[i] + '</span>';
+      }
       document.getElementById('result-stats').innerHTML = statsHtml;
-
       var cta = document.getElementById('result-cta');
       cta.href = product.url;
-      cta.textContent = product.price ? 'Shop ' + product.name + ' — ' + product.price : 'Shop ' + product.name;
-
-      /* Secondary suggestion */
-      var secHtml = '<p>Also worth trying: <a href="' + alt.url + '" target="_blank" rel="noopener">' + alt.name + '</a></p>';
-      document.getElementById('result-secondary').innerHTML = secHtml;
-
+      cta.textContent = product.price ? 'Shop ' + product.name + ' \u2014 ' + product.price : 'Shop ' + product.name;
+      document.getElementById('result-secondary').innerHTML = '<p>Also worth trying: <a href="' + alt.url + '" target="_blank" rel="noopener">' + alt.name + '</a></p>';
       /* Show result */
       var result = document.getElementById('result');
-      setTimeout(function() {
-        result.classList.add('active');
-        result.offsetHeight;
-        result.classList.add('visible');
-        notifyParentHeight();
-      }, 150);
+      result.classList.add('active');
+      void result.offsetHeight;
+      result.classList.add('visible');
+      notifyParentHeight();
     }
 
     function restart() {
       answers = {};
-      currentQ = 0;
-
-      /* Reset progress */
       for (var i = 1; i <= 3; i++) {
-        var step = document.getElementById('step-' + i);
-        step.classList.remove('active', 'complete');
+        document.getElementById('step-' + i).className = 'progress-step';
       }
-
-      /* Reset selections */
       var btns = document.querySelectorAll('.option-btn');
-      btns.forEach(function(btn) { btn.classList.remove('selected'); });
-
-      /* Hide result */
+      for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('selected'); }
       var result = document.getElementById('result');
       result.classList.remove('visible');
-      setTimeout(function() { result.classList.remove('active'); }, 350);
-
-      /* Show Q1 */
+      result.classList.remove('active');
       showQuestion(1);
     }
 
-    /* Iframe height communication for Shopify */
     function notifyParentHeight() {
       setTimeout(function() {
         var h = document.querySelector('.widget-wrapper').offsetHeight + 24;
@@ -760,8 +406,10 @@
       }, 450);
     }
 
-    /* Initialize */
-    showQuestion(1);
+    /* Initialize on DOM ready */
+    document.addEventListener('DOMContentLoaded', function() {
+      showQuestion(1);
+    });
   </script>
 </body>
 </html>
